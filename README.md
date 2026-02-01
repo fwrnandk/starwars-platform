@@ -19,3 +19,11 @@ Plataforma para explorar dados do universo Star Wars usando a SWAPI, com backend
 - GCP Cloud Functions + API Gateway
 - Pytest
 - Frontend estático (HTML/CSS/JS)
+
+## Endpoint (API Gateway)
+Base URL: https://swapi-gateway-67mqcogi.uc.gateway.dev
+
+### Exemplos
+- Health: `/health`
+- Filmes: `/v1/films?sort=release_date&order=asc`
+- Personagens por filme: `/v1/films/1/characters`
