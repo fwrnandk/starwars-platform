@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.6">
+  <diagram name="Página-1" id="uQM_11qTXsHiqcmwzMgF">
+    <mxGraphModel dx="1489" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-9" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="eQr2yNmZaWOqF8cppYQr-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Usuário (Browser)" vertex="1">
+          <mxGeometry height="60" width="120" x="504" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-10" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="eQr2yNmZaWOqF8cppYQr-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-14" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="eQr2yNmZaWOqF8cppYQr-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Frontend (Landing + App)" vertex="1">
+          <mxGeometry height="60" width="140" x="494" y="268" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-11" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="eQr2yNmZaWOqF8cppYQr-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="API Gateway (GCP)" vertex="1">
+          <mxGeometry height="60" width="120" x="504" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-13" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="eQr2yNmZaWOqF8cppYQr-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-15" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="eQr2yNmZaWOqF8cppYQr-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-17" edge="1" parent="1" source="eQr2yNmZaWOqF8cppYQr-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="eQr2yNmZaWOqF8cppYQr-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Clound Fuctions (Python)" vertex="1">
+          <mxGeometry height="60" width="120" x="504" y="498" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="SWAPI (swapi.dev)" vertex="1">
+          <mxGeometry height="60" width="120" x="504" y="618" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Auth (JWT)" vertex="1">
+          <mxGeometry height="60" width="120" x="764" y="268" as="geometry" />
+        </mxCell>
+        <mxCell id="eQr2yNmZaWOqF8cppYQr-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Testes (pytest)" vertex="1">
+          <mxGeometry height="60" width="120" x="284" y="498" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
