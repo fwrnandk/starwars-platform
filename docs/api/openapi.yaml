@@ -15,7 +15,7 @@ paths:
       summary: Healthcheck da API
       responses:
             x-google-backend:
-            address: https://YOUR_FUNCTION_URL
+            address: https://swapi-api-bbeth7qriq-rj.a.run.app
             path_translation: APPEND_PATH_TO_ADDRESS
 
             "200":
