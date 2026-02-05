@@ -1,0 +1,196 @@
+swagger: "2.0"
+
+info:
+  title: "StarWars Platform API"
+  version: "1.0.0"
+
+schemes:
+  - https
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+host: swapi-gateway2-67mqcogi.uc.gateway.dev
+
+x-google-endpoints:
+  - name: swapi-gateway2-67mqcogi.uc.gateway.dev
+    allowCors: true
+
+x-google-backend:
+  address: https://swapi-api-bbeth7qriq-rj.a.run.app
+  protocol: h2
+
+paths:
+  /health:
+    options:
+      summary: CORS preflight for health
+      operationId: corsHealth
+      responses:
+        '204':
+          description: Successful preflight response
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+    get:
+      summary: Health check
+      operationId: health
+      responses:
+        '200':
+          description: Service is healthy
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+
+  /auth/login:
+    options:
+      summary: CORS preflight for login
+      operationId: corsLogin
+      responses:
+        '204':
+          description: Successful preflight response
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+    post:
+      summary: User login
+      operationId: login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+
+  /v1/films:
+    options:
+      summary: CORS preflight for films
+      operationId: corsFilms
+      responses:
+        '204':
+          description: Successful preflight response
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+    get:
+      summary: List films
+      operationId: listFilms
+      produces:
+        - application/json
+      parameters:
+        - name: token
+          in: query
+          required: false
+          type: string
+          description: JWT token (alternativa ao header)
+        - name: search
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+        - name: order
+          in: query
+          type: string
+      responses:
+        '200':
+          description: List of films
+        '401':
+          description: Unauthorized
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+
+  /v1/films/{film_id}:
+    options:
+      summary: CORS preflight for film detail
+      operationId: corsFilmDetail
+      parameters:
+        - name: film_id
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Successful preflight response
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+    get:
+      summary: Get film by ID
+      operationId: getFilm
+      produces:
+        - application/json
+      parameters:
+        - name: film_id
+          in: path
+          required: true
+          type: string
+        - name: token
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Film details
+        '404':
+          description: Film not found
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+
+  /v1/films/{film_id}/characters:
+    options:
+      summary: CORS preflight for characters
+      operationId: corsCharacters
+      parameters:
+        - name: film_id
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Successful preflight response
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
+    get:
+      summary: Get characters from film
+      operationId: filmCharacters
+      produces:
+        - application/json
+      parameters:
+        - name: film_id
+          in: path
+          required: true
+          type: string
+        - name: token
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: List of characters
+        '404':
+          description: Film not found
+      x-google-backend:
+        address: https://swapi-api-bbeth7qriq-rj.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
