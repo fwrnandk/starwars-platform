@@ -1,170 +1,243 @@
-# StarWars Platform API
+# 🌌 StarWars Platform API
 
-API desenvolvida em Python utilizando Google Cloud Functions Gen2 e API Gateway para explorar dados do universo Star Wars via SWAPI.
+Plataforma desenvolvida em Python (Flask) + React para consumir e organizar dados da SWAPI (Star Wars API), com autenticação via JWT e deploy no Google Cloud Run.
 
---------------------------------------------------
+> ⚠️ Este projeto utiliza Cloud Run diretamente, sem API Gateway, para garantir estabilidade na autenticação.
 
-## Base URL (API Gateway)
+---
 
-https://swapi-gateway-67mqcogi.uc.gateway.dev
+## 🚀 Tecnologias
 
---------------------------------------------------
+### Backend
+- Python 3
+- Flask
+- JWT (PyJWT)
+- Requests
+- Google Cloud Run
 
-## Rotas Disponíveis
+### Frontend
+- React (Vite)
+- TypeScript
+- Axios
 
-Públicas
+### Infraestrutura
+- Google Cloud Platform
+- Cloud Run
 
-- GET /health  
-  Healthcheck da API.
+---
 
-- POST /auth/login  
-  Realiza autenticação e retorna um JWT.
+## 📐 Arquitetura
+```
+Frontend (React)
+      |
+      v
+Cloud Run (Flask API)
+      |
+      v
+    SWAPI
+```
 
-Protegidas (Bearer JWT)
+- O frontend consome diretamente a API publicada no Cloud Run  
+- O backend consulta a SWAPI e aplica filtros  
+- Autenticação via JWT  
+- Cache em memória para reduzir chamadas externas  
 
-- GET /v1/films  
-  Lista filmes com filtros e ordenação.
+---
 
-  Query params:
-  - search → texto para busca no título
-  - sort → title | release_date
-  - order → asc | desc
+## 🌍 URL da API (Produção)
+```
+https://swapi-api-486796978386.southamerica-east1.run.app
+```
 
-- GET /v1/films/{film_id}/characters  
-  Retorna os personagens de um filme específico.
+---
 
---------------------------------------------------
+## 🔐 Autenticação
 
-## Autenticação (JWT)
+A API utiliza JWT via Bearer Token.
 
-Login (PowerShell):
+### Credenciais padrão
+```
+Usuário: admin
+Senha: admin
+```
 
-$resp = Invoke-RestMethod -Method Post -Uri "https://swapi-gateway-67mqcogi.uc.gateway.dev/auth/login" -ContentType "application/json" -Body '{"username":"admin","password":"admin"}'
+---
+
+## 📡 Endpoints
+
+### Healthcheck
+```
+GET /health
+```
+
+---
+
+### Login
+```
+POST /auth/login
+```
+
+**Body:**
+```json
+{
+  "username": "admin",
+  "password": "admin"
+}
+```
+
+---
+
+### Listar Filmes (Protegido)
+```
+GET /v1/films
+```
+
+**Parâmetros (query):**
+- `search`
+- `sort` (title | release_date)
+- `order` (asc | desc)
+- `page`
+- `page_size`
+
+**Header:**
+```
+Authorization: Bearer <token>
+```
+
+---
+
+### Personagens por Filme (Protegido)
+```
+GET /v1/films/{film_id}/characters
+```
+
+**Header:**
+```
+Authorization: Bearer <token>
+```
+
+---
+
+## 🧪 Testes via Terminal (PowerShell / Windows)
+
+### 1️⃣ Healthcheck
+```powershell
+curl https://swapi-api-486796978386.southamerica-east1.run.app/health
+```
+
+### 2️⃣ Login
+```powershell
+$resp = Invoke-RestMethod `
+  -Method Post `
+  -Uri "https://swapi-api-486796978386.southamerica-east1.run.app/auth/login" `
+  -ContentType "application/json" `
+  -Body (@{ username="admin"; password="admin" } | ConvertTo-Json)
 
 $token = $resp.access_token
+```
 
-Acessar endpoint protegido:
+### 3️⃣ Listar Filmes
+```powershell
+Invoke-RestMethod `
+  -Headers @{ Authorization = "Bearer $token" } `
+  -Uri "https://swapi-api-486796978386.southamerica-east1.run.app/v1/films?sort=release_date&order=asc"
+```
 
-Invoke-RestMethod -Headers @{ Authorization = "Bearer $token" } -Uri "https://swapi-gateway-67mqcogi.uc.gateway.dev/v1/films?sort=release_date&order=asc"
+### 4️⃣ Buscar Personagens
+```powershell
+Invoke-RestMethod `
+  -Headers @{ Authorization = "Bearer $token" } `
+  -Uri "https://swapi-api-486796978386.southamerica-east1.run.app/v1/films/1/characters"
+```
 
---------------------------------------------------
+---
 
-## Executar Localmente (Windows)
+## 🖥️ Executar Localmente
 
-1) Instalar dependências
+### Backend
+```bash
+cd backend
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+python main.py
+```
 
-.\scripts\setup.ps1
-
-2) Iniciar servidor local
-
-.\scripts\run-local.ps1
-
-A API ficará disponível em:
-
+**API local:**
+```
 http://localhost:8080
+```
 
-3) Rodar testes
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-.\scripts\test.ps1
+**Frontend local:**
+```
+http://localhost:5173
+```
 
---------------------------------------------------
+---
 
-## Testes
+## 📁 Estrutura do Projeto
+```
+starwars-platform/
+│
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+│   └── scripts/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.tsx
+│   └── package.json
+│
+├── docs/
+│
+└── README.md
+```
 
-O projeto possui testes automatizados com:
+---
 
-- pytest
-- responses (mock HTTP)
+## ⚙️ Decisões Técnicas
 
-Cobertura:
-- Autenticação
-- Proteção JWT
-- Listagem de filmes
-- Filtros e ordenação
-- Correlação de personagens
+- JWT validado no backend
+- Cache em memória para otimização
+- CORS configurado no Flask
+- Axios com interceptor para token
+- Deploy direto no Cloud Run
+- API Gateway removido para evitar problemas de autenticação
 
---------------------------------------------------
+---
 
-## Arquitetura
+## ⚠️ Observação sobre API Gateway
 
-Fluxo:
+Durante o desenvolvimento, foi testada a utilização do Google API Gateway.
+Porém, ocorreram problemas recorrentes com propagação de headers de autenticação (JWT), causando falhas de autorização.
 
-Cliente  
-↓  
-API Gateway (GCP)  
-↓  
-Cloud Function Gen2 (Python)  
-↓  
-SWAPI
+Por este motivo, foi adotado o acesso direto ao Cloud Run, garantindo:
 
-Componentes:
+- ✅ Estabilidade
+- ✅ Menor latência
+- ✅ Autenticação confiável
+- ✅ Debug facilitado
 
-API Gateway
-- Exposição pública
-- Roteamento
+---
 
-Cloud Functions Gen2
-- Execução do backend
-- Validação JWT
-- Consumo da SWAPI
+## 📈 Funcionalidades Implementadas
 
-Backend Python
-- Filtros
-- Ordenação
-- Correlação
-- Cache (futuro)
-
-Autenticação
-- JWT HS256
-- Proteção em /v1/*
-
---------------------------------------------------
-
-## Estrutura do Projeto
-
-starwars-platform
-
-backend/
-  main.py
-  requirements.txt
-  requirements-dev.txt
-  tests/
-
-docs/
-  api/
-    openapi.yaml
-
-scripts/
-  setup.ps1
-  run-local.ps1
-  test.ps1
-
-README.md
-
---------------------------------------------------
-
-## Tecnologias
-
-- Python 3.11
-- Flask
-- Google Cloud Functions Gen2
-- Google API Gateway
-- JWT (PyJWT)
-- pytest
-- responses
-- SWAPI
-
---------------------------------------------------
-
-## Diferenciais
-
-- Arquitetura em nuvem
-- Autenticação JWT
-- API Gateway
-- Testes automatizados
-- Correlação de dados
-- Documentação clara
-- Scripts de execução
-
---------------------------------------------------
-
+- ✅ Login com JWT
+- ✅ Listagem de filmes
+- ✅ Filtro por nome
+- ✅ Ordenação por data ou título
+- ✅ Paginação
+- ✅ Correlação filme → personagens
+- ✅ Cache de requisições externas
+- ✅ Healthcheck
+- ✅ Integração frontend/backend
