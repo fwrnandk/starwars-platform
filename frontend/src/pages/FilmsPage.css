@@ -1,0 +1,455 @@
+/* pages/FilmsPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Roboto:wght@300;400;500&display=swap');
+
+.films-page {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 4rem;
+}
+
+/* Estrelas animadas - reutilizando do login */
+.films-page .stars,
+.films-page .stars2,
+.films-page .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.films-page .stars {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2"><circle cx="1" cy="1" r="1" fill="white"/></svg>') repeat;
+  animation: animateStars 50s linear infinite;
+}
+
+.films-page .stars2 {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"><circle cx="1.5" cy="1.5" r="1" fill="white"/></svg>') repeat;
+  animation: animateStars 100s linear infinite;
+}
+
+.films-page .stars3 {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="1.5" fill="white"/></svg>') repeat;
+  animation: animateStars 150s linear infinite;
+}
+
+@keyframes animateStars {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2000px); }
+}
+
+/* Header */
+.films-header {
+  background: rgba(15, 15, 35, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(255, 232, 31, 0.3);
+  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.films-header h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.star-wars-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #FFE81F;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px rgba(255, 232, 31, 0.6);
+}
+
+.films-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255, 232, 31, 0.8);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(220, 38, 38, 0.2);
+  border: 2px solid rgba(220, 38, 38, 0.5);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(220, 38, 38, 0.3);
+  border-color: rgba(220, 38, 38, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* Filtros */
+.filters-container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 1rem;
+  color: rgba(255, 232, 31, 0.6);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  background: rgba(30, 30, 60, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 232, 31, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #FFE81F;
+  background: rgba(30, 30, 60, 0.8);
+  box-shadow: 0 0 15px rgba(255, 232, 31, 0.3);
+}
+
+.filters-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.filters-group select {
+  padding: 0.875rem 1rem;
+  background: rgba(30, 30, 60, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 232, 31, 0.3);
+  border-radius: 8px;
+  color: #FFE81F;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filters-group select:focus {
+  outline: none;
+  border-color: #FFE81F;
+  box-shadow: 0 0 15px rgba(255, 232, 31, 0.3);
+}
+
+/* Grid de filmes */
+.films-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.film-card {
+  background: rgba(15, 15, 35, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 232, 31, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.film-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 232, 31, 0.6);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 232, 31, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.film-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+}
+
+.film-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.film-card:hover .film-poster img {
+  transform: scale(1.05);
+}
+
+.episode-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #FFE81F 0%, #f4d03f 100%);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.film-info {
+  padding: 1.5rem;
+}
+
+.film-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFE81F;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.film-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+}
+
+.meta-item svg {
+  color: rgba(255, 232, 31, 0.6);
+  flex-shrink: 0;
+}
+
+.opening-crawl {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.view-details-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  background: linear-gradient(135deg, rgba(255, 232, 31, 0.1) 0%, rgba(244, 208, 63, 0.1) 100%);
+  border: 2px solid rgba(255, 232, 31, 0.4);
+  border-radius: 8px;
+  color: #FFE81F;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 232, 31, 0.2) 0%, rgba(244, 208, 63, 0.2) 100%);
+  border-color: #FFE81F;
+  transform: translateX(4px);
+}
+
+/* Estados */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  color: #FFE81F;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 232, 31, 0.2);
+  border-top-color: #FFE81F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-banner {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background: rgba(220, 38, 38, 0.2);
+  border: 2px solid rgba(220, 38, 38, 0.5);
+  border-radius: 8px;
+  color: #fca5a5;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 10;
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: rgba(255, 232, 31, 0.6);
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  z-index: 10;
+}
+
+.no-results svg {
+  opacity: 0.5;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-loading {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mini-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 232, 31, 0.2);
+  border-top-color: #FFE81F;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Adicione isso no FilmsPage.css se ainda não adicionou */
+
+.search-box {
+  position: relative;
+}
+
+.search-loading {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mini-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 232, 31, 0.2);
+  border-top-color: #FFE81F;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .star-wars-text {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .films-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .films-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .filters-container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .filters-group {
+    width: 100%;
+  }
+
+  .filters-group select {
+    flex: 1;
+  }
+}
